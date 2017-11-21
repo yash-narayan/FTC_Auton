@@ -71,37 +71,37 @@ public class Encoder extends LinearOpMode
 
         robot.leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.Elevator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //robot.Elevator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.Elevator.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //robot.Elevator.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Send telemetry message to indicate successful Encoder reset
         telemetry.addData("Path0", "Starting at %7d :%7d",
                 robot.leftDrive.getCurrentPosition(),
-                robot.rightDrive.getCurrentPosition(),
-                robot.Elevator.getCurrentPosition());
+                robot.rightDrive.getCurrentPosition());
+                //robot.Elevator.getCurrentPosition());
         telemetry.update();
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
         //armDown(2.0);
         //jewel(0.5);
-        encoderDrive(DRIVE_SPEED, 32, 32, 0, 5.0);  // S1: Middle Motor For 19 Inches with 5 Sec timeout
-        encoderDrive(TURN_SPEED, 12, -12, 10, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, 1, 1, 0, 4.0);  // S3: Forward 1 Inch with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED, 32, 32, 5.0);  // S1: Middle Motor For 19 Inches with 5 Sec timeout
+        encoderDrive(TURN_SPEED, 12, -12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED, 1, 1, 4.0);  // S3: Forward 1 Inch with 4 Sec timeout
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
 
     public void encoderDrive(double speed,
-                             double leftInches, double rightInches, double elevatorInches,
+                             double leftInches, double rightInches,
                              double timeoutS) {
         int newLeftTarget;
         int newRightTarget;
-        int newElevatorTarget;
+        //int newElevatorTarget;
 
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
@@ -109,45 +109,45 @@ public class Encoder extends LinearOpMode
             // Determine new target position, and pass to motor controller
             newLeftTarget = robot.leftDrive.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
             newRightTarget = robot.rightDrive.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
-            newElevatorTarget = robot.Elevator.getCurrentPosition() + (int) (elevatorInches * COUNTS_PER_INCH);
+            //newElevatorTarget = robot.Elevator.getCurrentPosition() + (int) (elevatorInches * COUNTS_PER_INCH);
 
             robot.leftDrive.setTargetPosition(newLeftTarget);
             robot.rightDrive.setTargetPosition(newRightTarget);
-            robot.Elevator.setTargetPosition(newElevatorTarget);
+            //robot.Elevator.setTargetPosition(newElevatorTarget);
 
             // Turn On RUN_TO_POSITION
             robot.leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.Elevator.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            //robot.Elevator.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             // reset the timeout time and start motion.
             runtime.reset();
             robot.leftDrive.setPower(Math.abs(speed));
             robot.rightDrive.setPower(Math.abs(speed));
-            robot.Elevator.setPower(Math.abs(speed));
+           //robot.Elevator.setPower(Math.abs(speed));
 
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    (robot.leftDrive.isBusy() && robot.rightDrive.isBusy() && robot.Elevator.isBusy())) {
+                    (robot.leftDrive.isBusy() && robot.rightDrive.isBusy())) {
 
                 // Display it for the driver.
-                telemetry.addData("Path1", "Running to %7f :%7f", newLeftTarget, newRightTarget, newElevatorTarget);
+                telemetry.addData("Path1", "Running to %7f :%7f", newLeftTarget, newRightTarget);
                 telemetry.addData("Path2", "Running at %7f :%7f",
                         robot.leftDrive.getCurrentPosition(),
-                        robot.rightDrive.getCurrentPosition(),
-                        robot.Elevator.getCurrentPosition());
+                        robot.rightDrive.getCurrentPosition());
+                        //robot.Elevator.getCurrentPosition());
                 telemetry.update();
             }
 
             // Stop all motion;
             robot.leftDrive.setPower(0);
             robot.rightDrive.setPower(0);
-            robot.Elevator.setPower(0);
+            //robot.Elevator.setPower(0);
 
             // Turn off RUN_TO_POSITION
             robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.Elevator.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            //robot.Elevator.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
 }
