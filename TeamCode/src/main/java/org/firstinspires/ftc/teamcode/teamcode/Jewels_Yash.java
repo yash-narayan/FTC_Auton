@@ -16,6 +16,7 @@ public class Jewels_Yash extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     ColorSensor colorSensor;
 
+
     DcMotor leftDrive = null;
     DcMotor rightDrive = null;
     DcMotor Elevator = null;
@@ -29,6 +30,7 @@ public class Jewels_Yash extends LinearOpMode {
         robot.init(hardwareMap);
         colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
         colorSensor.enableLed(true);
+
 
         leftDrive = hardwareMap.dcMotor.get("left_drive");
         rightDrive = hardwareMap.dcMotor.get("right_drive");
