@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -8,11 +8,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
-@Autonomous(name="Encoder_Auton_Yash", group="Pushbot")
-public class Encoder_Auton_Yash extends LinearOpMode {
+@Autonomous(name="Encoder_Auton_Yash_Test", group="Pushbot")
+public class Encoder_Auton_Yash_Test extends LinearOpMode {
     HardwarePushbot robot = new HardwarePushbot();   // Use a Pushbot's hardware
     ElapsedTime runtime = new ElapsedTime(); // starting a timer once it is run
-    ColorSensor colorSensor; // declaring color sensor
+    //ColorSensor colorSensor; // declaring color sensor
 
     static final double COUNTS_PER_MOTOR_REV = 1120;    // eg: TETRIX Motor Encoder
     static final double DRIVE_GEAR_REDUCTION = 1.0;     // This is < 1.0 if geared UP
@@ -24,8 +24,8 @@ public class Encoder_Auton_Yash extends LinearOpMode {
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
-        colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
-        colorSensor.enableLed(true);
+//        colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
+//        colorSensor.enableLed(true);
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
@@ -43,8 +43,8 @@ public class Encoder_Auton_Yash extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-        armDown(2.0);
-        jewel(0.5);
+        //armDown(2.0);
+        //jewel(0.5);
         encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
         encoderDrive(DRIVE_SPEED, -1.7, -1.7, 1.3);  // S1: Forward 15 Inches with 5 Sec timeout
         encoderDrive(TURN_SPEED, 0.4, -0.4, 1.0);  // S2: Turn Right 6 Inches with 4 Sec timeout
@@ -95,31 +95,32 @@ public class Encoder_Auton_Yash extends LinearOpMode {
             robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
-    public void jewel(double holdTime){
-        ElapsedTime holdTimer = new ElapsedTime();
-        holdTimer.reset();
-        while (opModeIsActive() && holdTimer.time() < holdTime) {
-            if (colorSensor.blue() > 3) {
-                //TODO: TEST if arm to long, so bring it up before turning back
-                encoderDrive(TURN_SPEED, 0.3, -0.3, 1.0);
-                encoderDrive(TURN_SPEED, -0.3, 0.3, 1.0);
-                robot.armServo.setPosition(0.0);
-            } else {
-                encoderDrive(TURN_SPEED, -0.3, 0.3, 1.0);
-                encoderDrive(TURN_SPEED, 0.3, -0.3, 2.0);
-                robot.armServo.setPosition(0.0);
-
-            }
-            robot.leftDrive.setPower(0);
-            robot.rightDrive.setPower(0);
-        }
-    }
-    public void armDown(double holdTime) {
-        ElapsedTime holdTimer = new ElapsedTime();
-        holdTimer.reset();
-        while (opModeIsActive() && holdTimer.time() < holdTime) {
-            robot.armServo.setPosition(1.0);
-        }
-    }
+//    public void jewel(double holdTime){
+//        ElapsedTime holdTimer = new ElapsedTime();
+//        holdTimer.reset();
+//        while (opModeIsActive() && holdTimer.time() < holdTime) {
+//            if (colorSensor.blue() > 3) {
+//                //TODO: TEST if arm to long, so bring it up before turning back
+//                encoderDrive(TURN_SPEED, 0.3, -0.3, 1.0);
+//                encoderDrive(TURN_SPEED, -0.3, 0.3, 1.0);
+//                robot.armServo.setPosition(0.0);
+//            } else {
+//                encoderDrive(TURN_SPEED, -0.3, 0.3, 1.0);
+//                encoderDrive(TURN_SPEED, 0.3, -0.3, 2.0);
+//                robot.armServo.setPosition(0.0);
+//
+//            }
+//            robot.leftDrive.setPower(0);
+//            robot.rightDrive.setPower(0);
+//        }
+//    }
+//    public void armDown(double holdTime) {
+//        ElapsedTime holdTimer = new ElapsedTime();
+//        holdTimer.reset();
+//        while (opModeIsActive() && holdTimer.time() < holdTime) {
+//            robot.armServo.setPosition(1.0);
+//        }
+//    }
 
 }
+
