@@ -1,13 +1,13 @@
-package org.firstinspires.ftc.teamcode.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "TeleOpMode_Revised", group = "Tutorials")
+@TeleOp(name = "TeleOpMode_Revised_Slow", group = "Tutorials")
 
-public class TeleOpMode_Revised extends LinearOpMode
+public class TeleOpMode_Revised_Slow extends LinearOpMode
 {
     private DcMotor leftDrive;
     private DcMotor rightDrive;
@@ -43,16 +43,9 @@ public class TeleOpMode_Revised extends LinearOpMode
         {
 
             //Wheels
-            leftDrive.setPower(-(gamepad1.left_stick_y)); // setting the left motor power to the position of the joystick
-            rightDrive.setPower(-(gamepad1.right_stick_y)); // setting the right motor power to the position of the joystick
+            leftDrive.setPower(-0.4 * (gamepad1.left_stick_y)); // setting the left motor power to the position of the joystick
+            rightDrive.setPower(-0.4 * (gamepad1.right_stick_y)); // setting the right motor power to the position of the joystick
             up.setPower(gamepad2.right_stick_y); // setting the elevator motor to the joystick position
-
-            //Slow Mode
-            if (gamepad1.a == true) {
-                leftDrive.setPower(-0.4 * (gamepad1.left_trigger));
-                rightDrive.setPower(-0.4 * (gamepad1.right_trigger));
-            }
-
 
 /*
             //rightArm.setPosition(gamepad2.left_stick_x);
@@ -64,8 +57,6 @@ public class TeleOpMode_Revised extends LinearOpMode
 */
             leftArm.setPosition(0.5 - (0.5 * (gamepad2.left_stick_x))); //setting the arm position to the joystick position
             rightArm.setPosition(0.5 + (0.5 * (gamepad2.left_stick_x))); //setting the arm position to the joystick position
-
-
 
             //if (gamepad2.a == true){
                 //chomper.setPosition(5);
@@ -94,3 +85,4 @@ public class TeleOpMode_Revised extends LinearOpMode
         }
     }
 }
+
