@@ -57,6 +57,7 @@ public class HardwarePushbot
     public DcMotor   leftDrive   = null;
     public DcMotor  rightDrive  = null;
     public DcMotor  Elevator     =  null;
+    public DcMotor relicArm     = null;
     public Servo    leftClaw    = null;
     public Servo    rightClaw   = null;
     public Servo    armServo = null;
@@ -82,6 +83,7 @@ public class HardwarePushbot
         // Define and Initialize Motors
         leftDrive  = hwMap.get(DcMotor.class, "left_drive");
         rightDrive = hwMap.get(DcMotor.class, "right_drive");
+        relicArm = hwMap.get(DcMotor.class, "relicArm");
         Elevator = hwMap.get(DcMotor.class, "up");
 
         leftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
@@ -92,6 +94,7 @@ public class HardwarePushbot
         leftDrive.setPower(0);
         rightDrive.setPower(0);
         Elevator.setPower(0);
+        relicArm.setPower(0);
 
 
         // Set all motors to run without encoders.
