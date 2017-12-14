@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -9,8 +9,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
-@Autonomous(name="Encoder_Auton_Yash", group="Pushbot")
-public class Encoder_Auton_Yash extends LinearOpMode {
+@Autonomous(name="Jewels_Yash", group="Pushbot")
+public class Jewels_Yash extends LinearOpMode {
     HardwarePushbot robot = new HardwarePushbot();   // Use a Pushbot's hardware
     ElapsedTime runtime = new ElapsedTime(); // starting a timer once it is run
     ColorSensor colorSensor; // declaring color sensor
@@ -58,14 +58,14 @@ public class Encoder_Auton_Yash extends LinearOpMode {
         waitForStart();
         armDown(2.0);
         jewel(0.5);
-        leftClaw.setPosition(MID_SERVO);
-        rightClaw.setPosition(MID_SERVO);
-        encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
-        encoderDrive(DRIVE_SPEED, -10, -10, 2.0);  // S1: Forward 15 Inches with 5 Sec timeout
-        encoderDrive(TURN_SPEED, 1.5, -1.5, 1.25);  // S2: Turn Right 6 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, -1.0, -1.0, 0.5);  // S3: Reverse 3 Inches with 4 Sec timeout
-        leftClaw.setPosition(OUT_SERVO);
-        rightClaw.setPosition(OUT_SERVO);
+//        leftClaw.setPosition(MID_SERVO);
+//        rightClaw.setPosition(MID_SERVO);
+//        encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
+//        encoderDrive(DRIVE_SPEED, -10, -10, 2.0);  // S1: Forward 15 Inches with 5 Sec timeout
+//        encoderDrive(TURN_SPEED, 1.5, -1.5, 1.25);  // S2: Turn Right 6 Inches with 4 Sec timeout
+//        encoderDrive(DRIVE_SPEED, -1.0, -1.0, 0.5);  // S3: Reverse 3 Inches with 4 Sec timeout
+//        leftClaw.setPosition(OUT_SERVO);
+//        rightClaw.setPosition(OUT_SERVO);
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
@@ -147,3 +147,4 @@ public class Encoder_Auton_Yash extends LinearOpMode {
         }
     }
 }
+

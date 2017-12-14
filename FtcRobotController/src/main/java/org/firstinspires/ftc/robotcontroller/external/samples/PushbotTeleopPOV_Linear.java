@@ -116,11 +116,11 @@ public class PushbotTeleopPOV_Linear extends LinearOpMode {
 
             // Use gamepad buttons to move arm up (Y) and down (A)
             if (gamepad1.y)
-                robot.leftArm.setPower(robot.ARM_UP_POWER);
-            else if (gamepad1.a)
-                robot.leftArm.setPower(robot.ARM_DOWN_POWER);
-            else
-                robot.leftArm.setPower(0.0);
+//                robot.leftArm.setPower(robot.ARM_UP_POWER);
+//            else if (gamepad1.a)
+//                robot.leftArm.setPower(robot.ARM_DOWN_POWER);
+//            else
+//                robot.leftArm.setPower(0.0);
 
             // Send telemetry message to signify robot running;
             telemetry.addData("claw",  "Offset = %.2f", clawOffset);

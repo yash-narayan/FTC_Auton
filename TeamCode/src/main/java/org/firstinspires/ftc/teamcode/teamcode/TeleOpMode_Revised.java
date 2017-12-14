@@ -48,15 +48,15 @@ public class TeleOpMode_Revised extends LinearOpMode
             leftDrive.setPower(-(gamepad1.left_stick_y)); // setting the left motor power to the position of the joystick
             rightDrive.setPower(-(gamepad1.right_stick_y)); // setting the right motor power to the position of the joystick
             up.setPower(gamepad2.right_stick_y); // setting the elevator motor to the joystick position
-            relicArm.setPower(gamepad2.left_stick_y);
+            relicArm.setPower(gamepad2.left_stick_y); // relic arm to move
 
 
-            //Slow Mode
-//            if (gamepad1.a == true) {
-//                leftDrive.setPower(-0.4 * (gamepad1.left_trigger));
-//                rightDrive.setPower(-0.4 * (gamepad1.right_trigger));
-//            }
-
+// SLOW MODE
+// TEST: Test if this works. If right trigger is pressed it should down speed
+            if (gamepad1.right_trigger == 1.0f){
+                leftDrive.setPower(0.4);
+                rightDrive.setPower(0.4);
+            }
 
 /*
             //rightArm.setPosition(gamepad2.left_stick_x);
