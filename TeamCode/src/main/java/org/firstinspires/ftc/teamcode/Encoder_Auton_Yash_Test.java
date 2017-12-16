@@ -46,9 +46,10 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
         //armDown(2.0);
         //jewel(0.5);
         encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
-        encoderDrive(DRIVE_SPEED, -10, -10, 2.0);  // S1: Forward 15 Inches with 5 Sec timeout
-        encoderDrive(TURN_SPEED, 1.5, -1.5, 1.25);  // S2: Turn Right 6 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, -1.0, -1.0, 0.5);  // S3: Reverse 3 Inches with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED, -12, -12, 3.0);  // S1: Forward 15 Inches with 5 Sec timeout
+        encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
+        encoderDrive(TURN_SPEED, 1.3, -1.3, 1.2);  // S2: Turn Right 6 Inches with 4 Sec timeout
+        //encoderDrive(DRIVE_SPEED, -0.8, -0.8, 0.5);  // S3: Reverse 3 Inches with 4 Sec timeout
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }

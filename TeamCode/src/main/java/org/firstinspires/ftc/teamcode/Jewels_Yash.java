@@ -43,8 +43,8 @@ public class Jewels_Yash extends LinearOpMode {
         rightClaw = hardwareMap.servo.get("right");
 
         //TEST
-        leftClaw.setPosition(0.4);
-        rightClaw.setPosition(0.4);
+        leftClaw.setPosition(0.6);
+        rightClaw.setPosition(0.6);
 
         robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -118,14 +118,15 @@ public class Jewels_Yash extends LinearOpMode {
         while (opModeIsActive() && holdTimer.time() < holdTime) {
             if (colorSensor.blue() > 3) {
                 //TODO: TEST if arm to long, so bring it up before turning back
-                encoderDrive(TURN_SPEED, 0.28, -0.28, 0.4);
-                armUp(0.5);
-                encoderDrive(TURN_SPEED, -0.3, 0.3, 0.4);
+                encoderDrive(TURN_SPEED, 1, -1, 0.5);
+                encoderDrive(TURN_SPEED, -0.8, 0.8, 0.5);
+                armUp(1.0);
                 //robot.armServo.setPosition(0.0);
             } else {
-                encoderDrive(TURN_SPEED, -0.28, 0.28, 0.4);
-                armUp(0.5);
-                encoderDrive(TURN_SPEED, 0.28, -0.28, 0.4);
+                encoderDrive(TURN_SPEED, -1.0, 1.0, 0.5);
+                //armUp(0.5);\\
+                encoderDrive(TURN_SPEED, 1.0, -1.0, 0.4);
+                armUp(1.0);
                 //robot.armServo.setPosition(0.0);
             }
             robot.leftDrive.setPower(0);
@@ -136,14 +137,14 @@ public class Jewels_Yash extends LinearOpMode {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
-            robot.armServo.setPosition(0.65);
+            robot.armServo.setPosition(0.47);
         }
     }
     public void armUp(double holdTime) {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
-            robot.armServo.setPosition(0.0);
+            robot.armServo.setPosition(1.0);
         }
     }
 }

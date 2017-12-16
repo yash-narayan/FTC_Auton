@@ -53,9 +53,13 @@ public class TeleOpMode_Revised extends LinearOpMode
 
 // SLOW MODE
 // TEST: Test if this works. If right trigger is pressed it should down speed
-            if (gamepad1.right_trigger == 1.0f){
+            if (gamepad1.right_trigger == 1.0f) {
                 leftDrive.setPower(0.4);
                 rightDrive.setPower(0.4);
+            }
+
+            if (gamepad1.right_stick_y == 1.0f) {
+                relicArm.setPower(0.4);
             }
 
 /*
