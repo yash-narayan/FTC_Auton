@@ -19,7 +19,7 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
     static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double DRIVE_SPEED = 0.6;
+    static final double DRIVE_SPEED = 0.9;
     static final double TURN_SPEED = 0.3;
     @Override
     public void runOpMode() {
@@ -45,10 +45,14 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
         waitForStart();
         //armDown(2.0);
         //jewel(0.5);
-        encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
+        //encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
         encoderDrive(DRIVE_SPEED, -12, -12, 3.0);  // S1: Forward 15 Inches with 5 Sec timeout
-        encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
-        encoderDrive(TURN_SPEED, 1.3, -1.3, 1.2);  // S2: Turn Right 6 Inches with 4 Sec timeout
+        sleep(1000);
+
+        //encoderDrive(TURN_SPEED, 1.3, -1.3, 1.2);  // S2: Turn Right 6 Inches with 4 Sec timeout
+
+        //BREAK
+
         //encoderDrive(DRIVE_SPEED, -0.8, -0.8, 0.5);  // S3: Reverse 3 Inches with 4 Sec timeout
         telemetry.addData("Path", "Complete");
         telemetry.update();
@@ -81,7 +85,7 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
 
                 // Display it for the driver.
                 telemetry.addData("Path1", "Running to %7d :%7d", newLeftTarget, newRightTarget);
-                telemetry.addData("Path2", "Running at %7d :%7d",
+                telemetry.addData("Path2", "Running at %7d :%7d", newLeftTarget, newRightTarget,
                         robot.leftDrive.getCurrentPosition(),
                         robot.rightDrive.getCurrentPosition());
                 telemetry.update();

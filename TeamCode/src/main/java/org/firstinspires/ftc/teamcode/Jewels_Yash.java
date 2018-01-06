@@ -118,8 +118,8 @@ public class Jewels_Yash extends LinearOpMode {
         while (opModeIsActive() && holdTimer.time() < holdTime) {
             if (colorSensor.blue() > 3) {
                 //TODO: TEST if arm to long, so bring it up before turning back
-                encoderDrive(TURN_SPEED, 1, -1, 0.5);
-                encoderDrive(TURN_SPEED, -0.8, 0.8, 0.5);
+                encoderDrive(TURN_SPEED, 3, -3, 1.0);
+                encoderDrive(TURN_SPEED, -2.5, 2.5, 0.9);
                 armUp(1.0);
                 //robot.armServo.setPosition(0.0);
             } else {
@@ -137,7 +137,7 @@ public class Jewels_Yash extends LinearOpMode {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
-            robot.armServo.setPosition(0.47);
+            robot.armServo.setPosition(0.0);
         }
     }
     public void armUp(double holdTime) {
