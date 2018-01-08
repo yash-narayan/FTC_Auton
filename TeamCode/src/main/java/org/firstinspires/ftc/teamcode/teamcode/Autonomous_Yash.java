@@ -4,10 +4,10 @@ package org.firstinspires.ftc.teamcode.teamcode;
         import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
         import com.qualcomm.robotcore.hardware.ColorSensor;
         import com.qualcomm.robotcore.hardware.DcMotor;
-        import com.qualcomm.robotcore.hardware.DcMotorController;
-        import com.qualcomm.robotcore.hardware.DcMotorSimple;
         import com.qualcomm.robotcore.hardware.Servo;
         import com.qualcomm.robotcore.util.ElapsedTime;
+        import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+
 
         import javax.lang.model.element.ElementVisitor;
 
@@ -74,66 +74,8 @@ public class Autonomous_Yash extends LinearOpMode {
         sleep(3000);
         stop();
 
-        DriveForwardDistance(0.5, 5);
+        //DriveForwardDistance(0.5, 5);
     }
-    public void DriveForwardDistance(double power, int distance)
-    {
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        leftDrive.setTargetPosition(distance);
-        rightDrive.setTargetPosition(distance);
-
-        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        DriveForward(power);
-
-        while (leftDrive.isBusy() && rightDrive.isBusy())
-        {
-        }
-    }
-
-    public void TurnLeftDistance(double power, int distance)
-    {
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        leftDrive.setTargetPosition(-distance);
-        rightDrive.setTargetPosition(distance);
-
-        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        TurnLeft(power);
-
-        while (leftDrive.isBusy() && rightDrive.isBusy())
-        {
-        }
-
-        StopDriving();
-        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
-
-    public void TurnRightDistance(double power, int distance)
-    {
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        leftDrive.setTargetPosition(distance);
-        rightDrive.setTargetPosition(-distance);
-
-        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        TurnRight(power);
-
-        while (leftDrive.isBusy() && rightDrive.isBusy())
-        {
-        }
-    }
-
     public void DriveForward(double power)
     {
         leftDrive.setPower(power);
@@ -167,11 +109,6 @@ public class Autonomous_Yash extends LinearOpMode {
     {
         leftClaw.setPosition(0.2);
         rightClaw.setPosition(0.2);
-    }
-    public void ServoIn (double power)
-    {
-        armServo.setPosition(0.2);
-        armServo.setPosition(0.2);
     }
     public void ElevatorUp (double power)
     {

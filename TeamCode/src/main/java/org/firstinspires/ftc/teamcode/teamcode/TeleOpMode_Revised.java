@@ -15,6 +15,7 @@ public class TeleOpMode_Revised extends LinearOpMode
     private DcMotor relicArm;
     private Servo   leftArm;
     private Servo   rightArm;
+    private Servo   relicArmServo;
     // private Servo leftArm;
     private static final double ARM_RETRACTED_POSITION = 0.2;
     private static final double ARM_EXTENDED_POSITION = 0.8;
@@ -31,6 +32,7 @@ public class TeleOpMode_Revised extends LinearOpMode
         leftArm = hardwareMap.servo.get("left"); // setting the name of the motor so we  can call it throughout the program
         rightArm = hardwareMap.servo.get("right"); // setting the name of the motor so we  can call it throughout the program
         relicArm = hardwareMap.dcMotor.get("relicArm");
+        relicArmServo = hardwareMap.servo.get("relicArmServo");
         //grabbyArm = hardwareMap.dcMotor.get("");
         //chomper = hardwareMap.servo.get("");
         //wrist = hardwareMap.servo.get("");
@@ -49,6 +51,7 @@ public class TeleOpMode_Revised extends LinearOpMode
             rightDrive.setPower(-(gamepad1.right_stick_y)); // setting the right motor power to the position of the joystick
             up.setPower(gamepad2.right_stick_y); // setting the elevator motor to the joystick position
             relicArm.setPower(gamepad2.left_stick_y); // relic arm to move
+
 
 
 // SLOW MODE
@@ -72,6 +75,8 @@ public class TeleOpMode_Revised extends LinearOpMode
 */
             leftArm.setPosition(0.5 - (0.5 * (gamepad2.left_stick_x))); //setting the arm position to the joystick position
             rightArm.setPosition(0.5 + (0.5 * (gamepad2.left_stick_x))); //setting the arm position to the joystick position
+            relicArmServo.setPosition(0.5 + (0.5 * (gamepad2.left_stick_y))); //setting the arm position to the joystick position
+
 
 
 

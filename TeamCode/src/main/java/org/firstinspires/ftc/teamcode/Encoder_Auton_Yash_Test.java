@@ -14,12 +14,16 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
     ElapsedTime runtime = new ElapsedTime(); // starting a timer once it is run
     //ColorSensor colorSensor; // declaring color sensor
 
-    static final double COUNTS_PER_MOTOR_REV = 1120;    // eg: TETRIX Motor Encoder
+    static final double COUNTS_PER_MOTOR_REV_1 = 1120;    // eg: TETRIX Motor Encoder
+    static final double COUNTS_PER_MOTOR_REV_2 = 1120;
     static final double DRIVE_GEAR_REDUCTION = 1.0;     // This is < 1.0 if geared UP
     static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
-    static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+    static final double COUNTS_PER_INCH_1 = (COUNTS_PER_MOTOR_REV_1 * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double DRIVE_SPEED = 0.9;
+    static final double COUNTS_PER_INCH_2 = (COUNTS_PER_MOTOR_REV_2 * DRIVE_GEAR_REDUCTION) /
+            (WHEEL_DIAMETER_INCHES * 3.1415);
+    static final double DRIVE_SPEED_1 = 1.0;
+    static final double DRIVE_SPEED_2 = 1.0;
     static final double TURN_SPEED = 0.3;
     @Override
     public void runOpMode() {
@@ -46,7 +50,7 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
         //armDown(2.0);
         //jewel(0.5);
         //encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
-        encoderDrive(DRIVE_SPEED, -12, -12, 3.0);  // S1: Forward 15 Inches with 5 Sec timeout
+        encoderDrive(DRIVE_SPEED_1, DRIVE_SPEED_2, -30, -30, 30.0);  // S1: Forward 15 Inches with 5 Sec timeout
         sleep(1000);
 
         //encoderDrive(TURN_SPEED, 1.3, -1.3, 1.2);  // S2: Turn Right 6 Inches with 4 Sec timeout
@@ -57,7 +61,7 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
-    public void encoderDrive(double speed,
+    public void encoderDrive(double speed1, double speed2,
                              double leftInches, double rightInches,
                              double timeoutS) {
         int newLeftTarget;
@@ -65,8 +69,8 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            newLeftTarget = robot.leftDrive.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
-            newRightTarget = robot.rightDrive.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
+            newLeftTarget = robot.leftDrive.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH_1);
+            newRightTarget = robot.rightDrive.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH_2);
             robot.leftDrive.setTargetPosition(newLeftTarget);
             robot.rightDrive.setTargetPosition(newRightTarget);
 
@@ -76,8 +80,8 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
 
             // reset the timeout time and start motion.
             runtime.reset();
-            robot.leftDrive.setPower(Math.abs(speed));
-            robot.rightDrive.setPower(Math.abs(speed));
+            robot.leftDrive.setPower(Math.abs(speed1));
+            robot.rightDrive.setPower(Math.abs(speed2));
 
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&

@@ -112,21 +112,26 @@ public class Jewels_Yash extends LinearOpMode {
             robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
+
+    //CODE FOR IF WE ARE ON RED SIDE
     public void jewel(double holdTime){
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
-            if (colorSensor.blue() > 3) {
+            if (colorSensor.blue() > colorSensor.red()) {
                 //TODO: TEST if arm to long, so bring it up before turning back
-                encoderDrive(TURN_SPEED, 3, -3, 1.0);
-                encoderDrive(TURN_SPEED, -2.5, 2.5, 0.9);
-                armUp(1.0);
+                encoderDrive(TURN_SPEED, 3, -3, 1.0); // TURN BACKWARDS
+                armUp(1.0); // ARM GOES UP
+                encoderDrive(TURN_SPEED, -3.0, 3.0, 0.9); // GO FORWARD
+                telemetry.addData("BLUE", "%s visible");
                 //robot.armServo.setPosition(0.0);
             } else {
-                encoderDrive(TURN_SPEED, -1.0, 1.0, 0.5);
+                encoderDrive(TURN_SPEED, -3.0, 3.0, 0.5);// GO FORWARD
                 //armUp(0.5);\\
-                encoderDrive(TURN_SPEED, 1.0, -1.0, 0.4);
                 armUp(1.0);
+                encoderDrive(TURN_SPEED, 3.0, -3.0, 0.4); // TURN BACKS
+                telemetry.addData("RED", "%s visible");
+
                 //robot.armServo.setPosition(0.0);
             }
             robot.leftDrive.setPower(0);

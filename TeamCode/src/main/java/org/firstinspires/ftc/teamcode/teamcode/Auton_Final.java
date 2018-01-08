@@ -223,7 +223,7 @@ public class Auton_Final extends LinearOpMode {
     }
     public void DriveForward(double power)
     {
-        leftDrive.setPower(power);
+        leftDrive.setPower(-power);
         rightDrive.setPower(power);
     }
     public void StopDriving ()
@@ -232,12 +232,12 @@ public class Auton_Final extends LinearOpMode {
     }
     public void TurnRight (double power)
     {
-        rightDrive.setPower(-power);
-        leftDrive.setPower(power);
+        rightDrive.setPower(power);
+        leftDrive.setPower(-power);
     }
     public void TurnLeft (double power)
     {
-        rightDrive.setPower(power);
+        rightDrive.setPower(-power);
         leftDrive.setPower(-power);
     }
     public void ArmIn (double power)
