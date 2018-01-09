@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.teamcode;
 
         import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
         import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
         import com.qualcomm.robotcore.hardware.ColorSensor;
         import com.qualcomm.robotcore.hardware.DcMotor;
@@ -10,7 +11,7 @@ package org.firstinspires.ftc.teamcode.teamcode;
 
 
         import javax.lang.model.element.ElementVisitor;
-
+@Disabled
 @Autonomous(name = "Autonomous_Yash", group = "Tutorials")
 
 public class Autonomous_Yash extends LinearOpMode {

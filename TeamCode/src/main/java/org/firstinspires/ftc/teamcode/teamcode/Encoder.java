@@ -39,7 +39,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-
+@Disabled
 @Autonomous(name="Encoder", group="Pushbot")
 public class Encoder extends LinearOpMode
 

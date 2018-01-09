@@ -25,6 +25,7 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
     static final double DRIVE_SPEED_1 = 1.0;
     static final double DRIVE_SPEED_2 = 1.0;
     static final double DRIVE_SPEED = 0.3; // Drive speed is turn speed
+    static final double TURN_SPEED = 0.6;
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
@@ -52,8 +53,7 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
         //encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
         encoderDrive(DRIVE_SPEED, -30, -30, 30.0);  // S1: Forward 15 Inches with 5 Sec timeout
         sleep(1000);
-
-        //encoderDrive(TURN_SPEED, 1.3, -1.3, 1.2);  // S2: Turn Right 6 Inches with 4 Sec timeout
+        encoderDrive(TURN_SPEED, 1.3, -1.3, 1.2);  // S2: Turn Right 6 Inches with 4 Sec timeout
 
         //BREAK
 

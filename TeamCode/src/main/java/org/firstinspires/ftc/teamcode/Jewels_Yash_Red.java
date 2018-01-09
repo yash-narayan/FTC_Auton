@@ -8,12 +8,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
-@Disabled
-@Autonomous(name="Encoder_Auton_Yash_Test_Glyph", group="Pushbot")
-public class Encoder_Auton_Yash_Test_Glyph extends LinearOpMode {
+
+@Autonomous(name="Jewels_Yash_Red", group="Pushbot")
+public class Jewels_Yash_Red extends LinearOpMode {
     HardwarePushbot robot = new HardwarePushbot();   // Use a Pushbot's hardware
     ElapsedTime runtime = new ElapsedTime(); // starting a timer once it is run
-    //ColorSensor colorSensor; // declaring color sensor
+    ColorSensor colorSensor; // declaring color sensor
 
     static final double COUNTS_PER_MOTOR_REV = 1120;    // eg: TETRIX Motor Encoder
     static final double DRIVE_GEAR_REDUCTION = 1.0;     // This is < 1.0 if geared UP
@@ -21,7 +21,7 @@ public class Encoder_Auton_Yash_Test_Glyph extends LinearOpMode {
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED = 0.6;
-    static final double TURN_SPEED = 0.3;
+    static final double TURN_SPEED = 0.8;
     public static final double MID_SERVO       =  0.5 ;
     public static final double OUT_SERVO       = 0.2;
     Servo leftClaw = null;
@@ -30,8 +30,8 @@ public class Encoder_Auton_Yash_Test_Glyph extends LinearOpMode {
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
-//        colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
-//        colorSensor.enableLed(true);
+        colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
+        colorSensor.enableLed(true);
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
@@ -41,6 +41,10 @@ public class Encoder_Auton_Yash_Test_Glyph extends LinearOpMode {
 
         leftClaw = hardwareMap.servo.get("left");
         rightClaw = hardwareMap.servo.get("right");
+
+        //TEST
+        leftClaw.setPosition(0.6);
+        rightClaw.setPosition(0.6);
 
         robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -52,16 +56,16 @@ public class Encoder_Auton_Yash_Test_Glyph extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-        //armDown(2.0);
-        //jewel(0.5);
-        leftClaw.setPosition(MID_SERVO);
-        rightClaw.setPosition(MID_SERVO);
-        encoderDrive(DRIVE_SPEED, 0, 0, 3.0);
-        encoderDrive(DRIVE_SPEED, -1.3, -1.3, 1.1);  // S1: Forward 15 Inches with 5 Sec timeout
-        encoderDrive(TURN_SPEED, 0.5, -0.5, 0.8);  // S2: Turn Right 6 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, -0.3, -0.3, 0.2);  // S3: Reverse 3 Inches with 4 Sec timeout
-        leftClaw.setPosition(OUT_SERVO);
-        rightClaw.setPosition(OUT_SERVO);
+        armDown(2.0);
+        jewel(0.5);
+//        leftClaw.setPosition(MID_SERVO);
+//        rightClaw.setPosition(MID_SERVO);
+//        encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
+//        encoderDrive(DRIVE_SPEED, -10, -10, 2.0);  // S1: Forward 15 Inches with 5 Sec timeout
+//        encoderDrive(TURN_SPEED, 1.5, -1.5, 1.25);  // S2: Turn Right 6 Inches with 4 Sec timeout
+//        encoderDrive(DRIVE_SPEED, -1.0, -1.0, 0.5);  // S3: Reverse 3 Inches with 4 Sec timeout
+//        leftClaw.setPosition(OUT_SERVO);
+//        rightClaw.setPosition(OUT_SERVO);
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
@@ -108,43 +112,45 @@ public class Encoder_Auton_Yash_Test_Glyph extends LinearOpMode {
             robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
-    public void ArmIn (double power)
-    {
-        leftClaw.setPosition(0.8);
-        rightClaw.setPosition(0.8);
-    }
-    public void ArmOut (double power)
-    {
-        leftClaw.setPosition(0.2);
-        rightClaw.setPosition(0.2);
-    }
 
-//    public void jewel(double holdTime){
-//        ElapsedTime holdTimer = new ElapsedTime();
-//        holdTimer.reset();
-//        while (opModeIsActive() && holdTimer.time() < holdTime) {
-//            if (colorSensor.blue() > 3) {
-//                //TODO: TEST if arm to long, so bring it up before turning back
-//                encoderDrive(TURN_SPEED, 0.3, -0.3, 1.0);
-//                encoderDrive(TURN_SPEED, -0.3, 0.3, 1.0);
-//                robot.armServo.setPosition(0.0);
-//            } else {
-//                encoderDrive(TURN_SPEED, -0.3, 0.3, 1.0);
-//                encoderDrive(TURN_SPEED, 0.3, -0.3, 2.0);
-//                robot.armServo.setPosition(0.0);
-//
-//            }
-//            robot.leftDrive.setPower(0);
-//            robot.rightDrive.setPower(0);
-//        }
-//    }
-//    public void armDown(double holdTime) {
-//        ElapsedTime holdTimer = new ElapsedTime();
-//        holdTimer.reset();
-//        while (opModeIsActive() && holdTimer.time() < holdTime) {
-//            robot.armServo.setPosition(1.0);
-//        }
-//    }
+    //CODE FOR IF WE ARE ON RED SIDE
+    public void jewel(double holdTime){
+        ElapsedTime holdTimer = new ElapsedTime();
+        holdTimer.reset();
+        while (opModeIsActive() && holdTimer.time() < holdTime) {
+            if (colorSensor.blue() > colorSensor.red()) {
+                //TODO: TEST if arm to long, so bring it up before turning back
+                encoderDrive(TURN_SPEED, 8, -8, 1.0); // TURN BACKWARDS
+                armUp(1.0); // ARM GOES UP
+                encoderDrive(TURN_SPEED, -5.0, 5.0, 1.0); // GO FORWARD
+                telemetry.addData("BLUE", "%s visible");
+                //robot.armServo.setPosition(0.0);
+            } else {
+                encoderDrive(TURN_SPEED, -3.0, 3.0, 0.5);// GO FORWARD
+                //armUp(0.5);\\
+                armUp(1.0);
+                encoderDrive(TURN_SPEED, 3.0, -3.0, 0.4); // TURN BACKS
+                telemetry.addData("RED", "%s visible");
 
+                //robot.armServo.setPosition(0.0);
+            }
+            robot.leftDrive.setPower(0);
+            robot.rightDrive.setPower(0);
+        }
+    }
+    public void armDown(double holdTime) {
+        ElapsedTime holdTimer = new ElapsedTime();
+        holdTimer.reset();
+        while (opModeIsActive() && holdTimer.time() < holdTime) {
+            robot.armServo.setPosition(0.0);
+        }
+    }
+    public void armUp(double holdTime) {
+        ElapsedTime holdTimer = new ElapsedTime();
+        holdTimer.reset();
+        while (opModeIsActive() && holdTimer.time() < holdTime) {
+            robot.armServo.setPosition(1.0);
+        }
+    }
 }
 

@@ -75,7 +75,7 @@ public class TeleOpMode_Revised extends LinearOpMode
 */
             leftArm.setPosition(0.5 - (0.5 * (gamepad2.left_stick_x))); //setting the arm position to the joystick position
             rightArm.setPosition(0.5 + (0.5 * (gamepad2.left_stick_x))); //setting the arm position to the joystick position
-            relicArmServo.setPosition(0.5 + (0.5 * (gamepad2.left_stick_y))); //setting the arm position to the joystick position
+            relicArmServo.setPosition(0.5 + (0.5 * (gamepad2.right_stick_x))); //setting the arm position to the joystick position
 
 
 
