@@ -24,7 +24,7 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED_1 = 1.0;
     static final double DRIVE_SPEED_2 = 1.0;
-    static final double TURN_SPEED = 0.3;
+    static final double DRIVE_SPEED = 0.3; // Drive speed is turn speed
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
@@ -50,7 +50,7 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
         //armDown(2.0);
         //jewel(0.5);
         //encoderDrive(DRIVE_SPEED, 0, 0, 2.0);
-        encoderDrive(DRIVE_SPEED_1, DRIVE_SPEED_2, -30, -30, 30.0);  // S1: Forward 15 Inches with 5 Sec timeout
+        encoderDrive(DRIVE_SPEED, -30, -30, 30.0);  // S1: Forward 15 Inches with 5 Sec timeout
         sleep(1000);
 
         //encoderDrive(TURN_SPEED, 1.3, -1.3, 1.2);  // S2: Turn Right 6 Inches with 4 Sec timeout
@@ -61,7 +61,7 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
-    public void encoderDrive(double speed1, double speed2,
+    public void encoderDrive(double speed,
                              double leftInches, double rightInches,
                              double timeoutS) {
         int newLeftTarget;
@@ -80,8 +80,8 @@ public class Encoder_Auton_Yash_Test extends LinearOpMode {
 
             // reset the timeout time and start motion.
             runtime.reset();
-            robot.leftDrive.setPower(Math.abs(speed1));
-            robot.rightDrive.setPower(Math.abs(speed2));
+            robot.leftDrive.setPower(Math.abs(speed));
+            robot.rightDrive.setPower(Math.abs(speed));
 
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
